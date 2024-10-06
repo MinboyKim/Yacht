@@ -2,8 +2,12 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import { ModeToggle } from "./ui/mode-toggle";
 import Link from "next/link";
+import { auth } from "@/auth";
+import { logoutAction } from "@/app/actions/logout-action";
 
-const Header = () => {
+const Header = async () => {
+  const session = await auth();
+
   return (
     <header className="flex items-center justify-between gap-10 border-b p-4">
       <Link href="/" className="flex items-center gap-4">
@@ -12,9 +16,15 @@ const Header = () => {
       </Link>
       <div className="flex items-center gap-4">
         <ModeToggle />
-        <Button asChild>
-          <Link href="/login">Login</Link>
-        </Button>
+        {session?.user ? (
+          <form action={logoutAction}>
+            <Button type="submit">Logout</Button>;
+          </form>
+        ) : (
+          <Button asChild>
+            <Link href="/login">Login</Link>
+          </Button>
+        )}
       </div>
     </header>
   );

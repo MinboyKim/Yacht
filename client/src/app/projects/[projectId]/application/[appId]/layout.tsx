@@ -31,7 +31,7 @@ const Layout = ({ params, children }: PageProps) => {
           <Button variant="secondary" className="w-full md:w-auto">
             <Link href="https://github.com" className="flex items-center gap-2">
               <Github />
-              Respository
+              Repository
             </Link>
           </Button>
           <Button
