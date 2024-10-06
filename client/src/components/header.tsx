@@ -18,7 +18,7 @@ const Header = async () => {
         <ModeToggle />
         {session?.user ? (
           <form action={logoutAction}>
-            <Button type="submit">Logout</Button>;
+            <Button type="submit">Logout</Button>
           </form>
         ) : (
           <Button asChild>
