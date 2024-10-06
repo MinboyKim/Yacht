@@ -4,9 +4,11 @@ import { cn } from "@/lib/utils";
 import { PanelLeftClose, PanelLeftOpen, User } from "lucide-react";
 import { ReactNode, useState } from "react";
 import AddProjectDialog from "./add-project-dialog";
+import { useSession } from "next-auth/react";
 
 const Sidebar = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(true);
+  const { data } = useSession();
 
   return (
     <div
@@ -19,7 +21,7 @@ const Sidebar = ({ children }: { children: ReactNode }) => {
         {open ? (
           <div className="flex items-center gap-2">
             <User />
-            Minboy
+            {data?.user?.name}
           </div>
         ) : (
           <div className="invisible"></div>
