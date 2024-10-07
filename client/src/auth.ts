@@ -50,8 +50,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (credentials === null) return null;
 
         console.log("authorize", credentials);
-
-        console.log("authorize", credentials);
         try {
           const response = await fetch(
             `${process.env.NEXT_PUBLIC_API_SERVER_URL}/users/login`,
