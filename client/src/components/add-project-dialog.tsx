@@ -1,3 +1,6 @@
+"use client";
+
+import { addProjectAction } from "@/app/actions/add-project-action";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,11 +13,46 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
+
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+  return (
+    <Button
+      type="submit"
+      className="flex items-center gap-4"
+      disabled={pending}
+    >
+      {pending ? (
+        "Loading..."
+      ) : (
+        <>
+          <Plus size={16} />
+          Add
+        </>
+      )}
+    </Button>
+  );
+};
 
 const AddProjectDialog = () => {
+  const [state, formAction] = useFormState(addProjectAction, {
+    message: null,
+    status: "init",
+  });
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (state.status === "success") {
+      setIsOpen(false);
+    }
+  }, [state]);
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <div className="flex w-full cursor-pointer items-center justify-center rounded-lg border p-2 hover:bg-gray-200 dark:hover:bg-gray-800">
           <Plus className="cursor-pointer" />
@@ -27,20 +65,27 @@ const AddProjectDialog = () => {
             Create a new project to start building your application.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <form action={formAction} className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-center">
               Name
             </Label>
-            <Input id="name" className="col-span-3" />
+            <Input id="name" className="col-span-3" name="name" />
           </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit" className="flex items-center gap-4">
-            <Plus size={16} />
-            Add
-          </Button>
-        </DialogFooter>
+          <DialogFooter className="mt-2 flex items-center gap-4">
+            {state.status === "error" && (
+              <p
+                className={cn(
+                  "text-sm text-red-500",
+                  state.message === "Project added" && "text-green-500",
+                )}
+              >
+                {state.message}
+              </p>
+            )}
+            <SubmitButton />
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

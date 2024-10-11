@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { PanelLeftClose, PanelLeftOpen, User } from "lucide-react";
+import { PanelRightClose, PanelRightOpen, User } from "lucide-react";
 import { ReactNode, useState } from "react";
 import AddProjectDialog from "./add-project-dialog";
 import { useSession } from "next-auth/react";
@@ -27,12 +27,12 @@ const Sidebar = ({ children }: { children: ReactNode }) => {
           <div className="invisible"></div>
         )}
         {open ? (
-          <PanelLeftOpen
+          <PanelRightOpen
             onClick={() => setOpen(false)}
             className="-rotate-90 transform cursor-pointer md:rotate-0"
           />
         ) : (
-          <PanelLeftClose
+          <PanelRightClose
             onClick={() => setOpen(true)}
             className={"-rotate-90 transform cursor-pointer md:rotate-0"}
           />

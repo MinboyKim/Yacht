@@ -2,11 +2,11 @@ import { auth } from "@/auth";
 
 export const fetchClient = async (url, options) => {
   const session = await auth();
-  console.log(`From the fetchClient ${JSON.stringify(session?.accessToken)}`);
 
-  return fetch(url, {
+  return fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}${url}`, {
     ...options,
     headers: {
+      "Content-Type": "application/json",
       ...options?.headers,
       ...(session && { Authorization: `Bearer ${session.accessToken}` }),
     },

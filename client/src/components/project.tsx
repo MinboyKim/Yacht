@@ -1,15 +1,15 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronDown, LayoutGrid } from "lucide-react";
+import { ChevronUp, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
 interface ProjectProps {
   data: {
-    id: number;
-    name: string;
+    projectId: number;
+    projectName: string;
     applications: {
       id: number;
       name: string;
@@ -25,24 +25,27 @@ const Project = ({ data }: ProjectProps) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex cursor-pointer items-center justify-center gap-2 md:justify-normal">
-        <ChevronDown
+        <ChevronUp
           onClick={() => setIsOpen((prev) => !prev)}
           size={20}
           className={cn(
             "transition-transform duration-300 ease-in-out",
-            !isOpen && "rotate-180 transform",
+            !isOpen && "-rotate-180 transform",
           )}
         />
-        <Link href={`/projects/${data.id}`}>
-          <h2 className="text-xl font-bold">{data.name}</h2>
+        <Link href={`/projects/${data.projectId}`}>
+          <h2 className="text-xl font-bold">{data.projectName}</h2>
         </Link>
       </div>
 
       <div className={cn("flex flex-col gap-2", isOpen ? "block" : "hidden")}>
+        {data.applications.length === 0 && (
+          <div className="text-gray-500">No applications</div>
+        )}
         {data.applications.map((application) => (
           <Link
             key={application.id}
-            href={`/projects/${data.id}/application/${application.id}`}
+            href={`/projects/${data.projectId}/application/${application.id}`}
           >
             <div
               className={cn(
