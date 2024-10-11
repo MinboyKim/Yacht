@@ -2,13 +2,21 @@
 
 import { cn } from "@/lib/utils";
 import { PanelRightClose, PanelRightOpen, User } from "lucide-react";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import AddProjectDialog from "./add-project-dialog";
 import { useSession } from "next-auth/react";
+import { Skeleton } from "./ui/skeleton";
 
 const Sidebar = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(true);
+  const [userLoading, setUserLoading] = useState(true);
   const { data } = useSession();
+
+  useEffect(() => {
+    if (data) {
+      setUserLoading(false);
+    }
+  }, [data]);
 
   return (
     <div
@@ -21,7 +29,7 @@ const Sidebar = ({ children }: { children: ReactNode }) => {
         {open ? (
           <div className="flex items-center gap-2">
             <User />
-            {data?.user?.name}
+            {userLoading ? <Skeleton className="h-6 w-20" /> : data?.user?.name}
           </div>
         ) : (
           <div className="invisible"></div>
