@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronUp, LayoutGrid } from "lucide-react";
+import { Ban, ChevronUp, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
@@ -40,7 +40,10 @@ const Project = ({ data }: ProjectProps) => {
 
       <div className={cn("flex flex-col gap-2", isOpen ? "block" : "hidden")}>
         {data.applications.length === 0 && (
-          <div className="text-gray-500">No applications</div>
+          <div className="flex items-center gap-2 text-gray-500">
+            <Ban size={16} />
+            No applications
+          </div>
         )}
         {data.applications.map((application) => (
           <Link
