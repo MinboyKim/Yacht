@@ -2,7 +2,7 @@ import ApplicationList from "@/components/application-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Suspense } from "react";
 
-const Page = async ({ params }: { params: { projectId: string } }) => {
+const Page = async ({ params }: { params: { projectName: string } }) => {
   return (
     <div className="flex h-full w-full flex-col gap-10 p-10">
       <Suspense
@@ -16,7 +16,7 @@ const Page = async ({ params }: { params: { projectId: string } }) => {
           </>
         }
       >
-        <ApplicationList projectId={params.projectId} />
+        <ApplicationList projectName={params.projectName} />
       </Suspense>
     </div>
   );

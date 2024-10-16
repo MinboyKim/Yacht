@@ -3,7 +3,7 @@ import { CheckCircle, Ellipsis, LayoutGrid, Plus, Users } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-const ApplicationList = async ({ projectId }: { projectId: string }) => {
+const ApplicationList = async ({ projectName }: { projectName: string }) => {
   const response = await fetchClient("/projects", {
     method: "GET",
   });
@@ -14,7 +14,7 @@ const ApplicationList = async ({ projectId }: { projectId: string }) => {
   }
   const projects = await response.json();
   const selectedProject = projects.find(
-    (project) => project.projectId === +projectId,
+    (project) => project.projectName === projectName,
   );
   const applications = selectedProject?.applications || [];
 
@@ -30,7 +30,7 @@ const ApplicationList = async ({ projectId }: { projectId: string }) => {
             Invite
           </Button>
           <Button asChild className="flex items-center gap-4">
-            <Link href={`/projects/${projectId}/create`}>
+            <Link href={`/projects/${projectName}/create`}>
               <Plus size={24} className="hidden md:block" />
               Create Application
             </Link>
@@ -47,7 +47,7 @@ const ApplicationList = async ({ projectId }: { projectId: string }) => {
         {applications.map((application) => (
           <Link
             key={application.id}
-            href={`/projects/${projectId}/application/${application.id}`}
+            href={`/projects/${projectName}/application/${application.id}`}
           >
             <div className="flex w-full cursor-pointer flex-col gap-4 rounded-xl border p-8 hover:bg-gray-300 dark:hover:bg-gray-700">
               <div className="flex items-center gap-4">
@@ -55,7 +55,7 @@ const ApplicationList = async ({ projectId }: { projectId: string }) => {
                 <h2 className="text-2xl font-bold">{application.name}</h2>
               </div>
 
-              <p className="text-gray-500">Description</p>
+              <p className="text-gray-500">{application.description}</p>
 
               <div className="flex flex-col items-center justify-between gap-10 md:flex-row">
                 <div className="flex items-center gap-4 rounded-xl border p-4 text-green-600">

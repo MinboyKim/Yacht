@@ -12,19 +12,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Plus, Rocket } from "lucide-react";
 import Link from "next/link";
 
-const Page = ({ params }: { params: { projectId: string } }) => {
+const Page = ({ params }: { params: { projectName: string } }) => {
   return (
     <div className="flex w-full flex-col gap-10 p-6 md:p-10">
       <div className="flex w-full items-center justify-between gap-6">
         <div className="flex items-center gap-4">
           <Rocket size={30} />
           <h1 className="text-xl font-bold md:text-4xl">
-            Create Application to Project {params.projectId}
+            Create Application to Konkuk-Project
           </h1>
         </div>
 
         <Button asChild variant="secondary" className="text-xs md:text-sm">
-          <Link href={`/projects/${params.projectId}`}>Back</Link>
+          <Link href={`/projects/${params.projectName}`}>Back</Link>
         </Button>
       </div>
 

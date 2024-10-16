@@ -11,7 +11,7 @@ const AppNavbar = () => {
   return (
     <div className="mt-10 flex items-center gap-8 md:gap-10">
       <Link
-        href={`/projects/${params.projectId}/application/${params.appId}/overview`}
+        href={`/projects/${params.projectName}/application/${params.appId}/overview`}
         className={cn(
           "text-xl font-semibold text-gray-500",
           pathname.split("/").pop() === "overview" &&
@@ -21,7 +21,7 @@ const AppNavbar = () => {
         Overview
       </Link>
       <Link
-        href={`/projects/${params.projectId}/application/${params.appId}/build`}
+        href={`/projects/${params.projectName}/application/${params.appId}/build`}
         className={cn(
           "text-xl font-semibold text-gray-500",
           pathname.split("/").pop() === "build" &&
@@ -31,7 +31,7 @@ const AppNavbar = () => {
         Build
       </Link>
       <Link
-        href={`/projects/${params.projectId}/application/${params.appId}/resources`}
+        href={`/projects/${params.projectName}/application/${params.appId}/resources`}
         className={cn(
           "text-xl font-semibold text-gray-500",
           pathname.split("/").pop() === "resources" &&

@@ -33,7 +33,7 @@ const Project = ({ data }: ProjectProps) => {
             !isOpen && "-rotate-180 transform",
           )}
         />
-        <Link href={`/projects/${data.projectId}`}>
+        <Link href={`/projects/${data.projectName}`}>
           <h2 className="text-xl font-bold">{data.projectName}</h2>
         </Link>
       </div>
@@ -48,7 +48,7 @@ const Project = ({ data }: ProjectProps) => {
         {data.applications.map((application) => (
           <Link
             key={application.id}
-            href={`/projects/${data.projectId}/application/${application.id}`}
+            href={`/projects/${data.projectName}/application/${application.id}`}
           >
             <div
               className={cn(
