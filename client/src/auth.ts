@@ -6,7 +6,7 @@ const refreshAccessToken = async (token: any) => {
   console.log("refreshAccessToken", token);
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_SERVER_URL}/users/reissue`,
+      `${process.env.NEXT_PUBLIC_API_SERVER_URL}/auth/reissue`,
       {
         method: "POST",
         headers: {
