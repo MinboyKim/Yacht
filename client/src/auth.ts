@@ -32,6 +32,8 @@ const refreshAccessToken = async (token: any) => {
   } catch (error) {
     console.error(error);
 
+    await signOut();
+
     return {
       ...token,
       error: "RefreshAccessTokenError",
