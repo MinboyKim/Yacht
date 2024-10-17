@@ -1,5 +1,5 @@
 import { fetchClient } from "@/lib/fetch-client";
-import { CheckCircle, Ellipsis, LayoutGrid, Plus, Users } from "lucide-react";
+import { CheckCircle, Ellipsis, LayoutGrid, Plus } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import InviteDialog from "./invite-dialog";
