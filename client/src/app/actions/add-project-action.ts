@@ -19,6 +19,12 @@ export const addProjectAction = async (prevState: any, formData: FormData) => {
       }),
     });
     if (!response.ok) {
+      if (response.status === 400) {
+        return {
+          message: "Only alphanumeric characters are allowed",
+          status: "error",
+        };
+      }
       return {
         message: "Failed to add project",
         status: "error",

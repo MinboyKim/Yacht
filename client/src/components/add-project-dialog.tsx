@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -74,14 +73,7 @@ const AddProjectDialog = () => {
           </div>
           <DialogFooter className="mt-2 flex items-center gap-4">
             {state.status === "error" && (
-              <p
-                className={cn(
-                  "text-sm text-red-500",
-                  state.message === "Project added" && "text-green-500",
-                )}
-              >
-                {state.message}
-              </p>
+              <p className="text-sm text-red-500">{state.message}</p>
             )}
             <SubmitButton />
           </DialogFooter>

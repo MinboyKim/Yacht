@@ -1,6 +1,7 @@
 import AppNavbar from "@/components/app-navbar";
+import DeployButton from "@/components/deploy-button";
 import { Button } from "@/components/ui/button";
-import { Edit, Github, LayoutGrid, Rocket } from "lucide-react";
+import { Edit, Github, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 
 interface PageProps {
@@ -41,10 +42,7 @@ const Layout = ({ params, children }: PageProps) => {
             <Edit />
             Edit
           </Button>
-          <Button className="flex w-full items-center gap-4 md:w-auto">
-            <Rocket />
-            Deploy
-          </Button>
+          <DeployButton />
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import { fetchClient } from "@/lib/fetch-client";
 import { CheckCircle, Ellipsis, LayoutGrid, Plus, Users } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import InviteDialog from "./invite-dialog";
 
 const ApplicationList = async ({ projectName }: { projectName: string }) => {
   const response = await fetchClient("/projects", {
@@ -25,10 +26,7 @@ const ApplicationList = async ({ projectName }: { projectName: string }) => {
           {selectedProject?.projectName}
         </h1>
         <div className="flex items-center gap-4">
-          <Button variant="secondary" className="flex items-center gap-4">
-            <Users size={24} />
-            Invite
-          </Button>
+          <InviteDialog />
           <Button asChild className="flex items-center gap-4">
             <Link href={`/projects/${projectName}/create`}>
               <Plus size={24} className="hidden md:block" />
