@@ -31,14 +31,14 @@ const AppNavbar = () => {
         Build
       </Link>
       <Link
-        href={`/projects/${params.projectName}/application/${params.appId}/resources`}
+        href={`/projects/${params.projectName}/application/${params.appId}/visualization`}
         className={cn(
           "text-xl font-semibold text-gray-500",
-          pathname.split("/").pop() === "resources" &&
+          pathname.split("/").pop() === "visualization" &&
             "border-b-2 border-gray-900 text-gray-900 dark:border-gray-100 dark:text-gray-100",
         )}
       >
-        Resources
+        Visualization
       </Link>
     </div>
   );
