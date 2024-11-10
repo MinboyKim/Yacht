@@ -1,8 +1,8 @@
+import AppHeader from "@/components/app-header";
 import AppNavbar from "@/components/app-navbar";
-import DeployButton from "@/components/deploy-button";
-import { Button } from "@/components/ui/button";
-import { Edit, Github, LayoutGrid } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
+import { Suspense } from "react";
 
 interface PageProps {
   params: {
@@ -22,32 +22,21 @@ const Layout = ({ params, children }: PageProps) => {
         {params.projectName}
       </Link>
 
-      <div className="flex w-full flex-col items-center justify-between md:w-auto md:flex-row">
-        <h1 className="flex items-center gap-2 self-start text-2xl font-bold md:text-3xl">
-          <LayoutGrid className="inline-block" />
-          ML Server
-        </h1>
-
-        <div className="mt-4 flex w-full flex-col items-end gap-4 self-end md:mt-0 md:w-auto md:flex-row">
-          <Button variant="secondary" className="w-full md:w-auto">
-            <Link href="https://github.com" className="flex items-center gap-2">
-              <Github />
-              Repository
-            </Link>
-          </Button>
-          <Button
-            className="flex w-full items-center gap-4 md:w-auto"
-            variant="secondary"
-          >
-            <Edit />
-            Edit
-          </Button>
-          <DeployButton />
-        </div>
-      </div>
-
+      <Suspense
+        fallback={
+          <div className="flex h-[40px] w-full justify-between">
+            <Skeleton className="h-[40px] w-[150px] rounded-xl" />
+            <div className="flex gap-4">
+              <Skeleton className="h-[40px] w-[136px] rounded-xl" />
+              <Skeleton className="h-[40px] w-[98px] rounded-xl" />
+              <Skeleton className="h-[40px] w-[118px] rounded-xl" />
+            </div>
+          </div>
+        }
+      >
+        <AppHeader appId={params.appId} />
+      </Suspense>
       <AppNavbar />
-
       {children}
     </div>
   );
