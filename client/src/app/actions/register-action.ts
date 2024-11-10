@@ -54,6 +54,7 @@ export const registerAction = async (prevState: any, formData: FormData) => {
         }),
       },
     );
+    console.log(response);
 
     if (!response.ok)
       return {
